@@ -1,9 +1,9 @@
 import React from "react";
 import Box from "./Box";
 
-function Board({ boxes, onClick }) {
+function Board({ boxes, onClick, style }) {
   return (
-    <div className="board">
+    <div className={style}>
       {boxes.map((box, i) => (
         <Box key={i} value={box} onClick={() => onClick(i)} />
       ))}

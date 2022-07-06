@@ -19,9 +19,25 @@ h1 {
   margin: 2rem;
 }
 
+.mode {
+  padding: 16px;
+}
+
 .board {
+  margin: 16px;
   border: 1rem solid #ff652f;
   background: #ff652f;
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.iaBoard {
+  margin: 16px;
+  border: 1rem solid aqua;
+  background: aqua;
   width: 500px;
   height: 500px;
   display: grid;
