@@ -3,31 +3,45 @@ import Game from "./Game";
 import IaGame from "./IaGame";
 import Switch from "react-switch";
 
-
 function Manager() {
-  const [scoreX, setScoreX] = useState(0);
-  const [scoreO, setScoreO] = useState(0);
-  const [gamesNumber, setGamesNumber] = useState(0);
+  const [scoreX, setScoreX] = useState(() => {
+    const saved = localStorage.getItem("scoreX");
+    const initialValue = 0;
+    return saved ? localStorage.getItem("scoreX") : initialValue;
+  });
+  const [scoreO, setScoreO] = useState(() => {
+    const saved = localStorage.getItem("scoreO");
+    const initialValue = 0;
+    return saved ? localStorage.getItem("scoreO") : initialValue;
+  });
+  const [gamesNumber, setGamesNumber] = useState(() => {
+    const saved = localStorage.getItem("gamesNumber");
+    const initialValue = 0;
+    return saved ? localStorage.getItem("gamesNumber") : initialValue;
+  });
   const [mode, setMode] = useState(false);
 
   // Check if game is over
   const onGameOver = (xWon) => {
     if (xWon) {
       setScoreX(scoreX + 1);
+      localStorage.setItem("scoreX", scoreX + 1);
     } else {
       setScoreO(scoreO + 1);
+      localStorage.setItem("scoreO", scoreO + 1);
     }
   };
 
   // Increment game counter
   const incrementGame = () => {
     setGamesNumber(gamesNumber + 1);
+    localStorage.setGamesNumber("gamesNumber", gamesNumber + 1);
   };
 
   // Toogle switch
   const toogleSwitch = () => {
     setMode(!mode);
-  }
+  };
 
   // Switch game mode
   const renderGameMode = () => {
@@ -36,7 +50,7 @@ function Manager() {
     } else {
       return <IaGame onGameOver={onGameOver} incrementGame={incrementGame} />;
     }
-  }
+  };
 
   // Render
   return (
